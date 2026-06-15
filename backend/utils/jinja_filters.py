@@ -2,6 +2,7 @@
 from jinja2 import contextfilter
 from datetime import datetime
 import hashlib
+from markupsafe import escape
 
 @contextfilter
 def format_datetime(context, value, format='%Y-%m-%d %H:%M:%S'):
@@ -60,12 +61,14 @@ def format_file_size(context, size_bytes):
 
 @contextfilter
 def role_badge(context, role):
-    """Generate role badge HTML"""
+    """Generate role badge HTML with proper XSS protection"""
     role_colors = {
         'admin': 'danger',
         'project_manager': 'primary',
         'team_member': 'secondary'
     }
     color = role_colors.get(role, 'secondary')
-    return f'<span class="badge badge-{color}">{role}</span>'
+    # Escape the role value to prevent XSS attacks
+    safe_role = escape(role)
+    return f'<span class="badge badge-{color}">{safe_role}</span>'
 
