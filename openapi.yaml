@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ProjectHub API
+  title: ProjectHub API test123456
   description: |
     ProjectHub is a project management web application API.
     
