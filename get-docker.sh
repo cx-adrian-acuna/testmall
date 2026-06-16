@@ -117,7 +117,6 @@ if [ -z "$REPO_FILE" ]; then
 fi
 
 mirror=''
-testignre=""
 DRY_RUN=${DRY_RUN:-}
 REPO_ONLY=${REPO_ONLY:-0}
 while [ $# -gt 0 ]; do
